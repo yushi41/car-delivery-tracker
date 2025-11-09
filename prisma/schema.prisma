@@ -1,0 +1,29 @@
+// Prisma schema file for car delivery tracker
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// 車両テーブル
+model Vehicle {
+  id           String   @id @default(uuid())
+  maker        String   // メーカー
+  model        String   // 車種
+  year         Int?     // 年式
+  price        Int?     // 価格
+  purchaseDate DateTime // 購入日
+  deliveryDate DateTime // 納車予定日
+  assignee     String   // 担当者名
+  status       String   // ステータス
+  memo         String?  // メモ
+  
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  @@map("vehicles")
+}
