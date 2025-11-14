@@ -18,6 +18,7 @@ export default function VehicleForm({ onSubmit, onCancel, initialData }: Vehicle
     purchaseDate: initialData?.purchaseDate || '',
     deliveryDate: initialData?.deliveryDate || '',
     assignee: initialData?.assignee || '',
+    customerName: initialData?.customerName || '',
     status: initialData?.status || '契約済み' as VehicleStatus,
     memo: initialData?.memo || '',
   });
@@ -42,6 +43,7 @@ export default function VehicleForm({ onSubmit, onCancel, initialData }: Vehicle
         purchaseDate: formData.purchaseDate,
         deliveryDate: formData.deliveryDate,
         assignee: formData.assignee,
+        customerName: formData.customerName || undefined,
         status: formData.status,
         memo: formData.memo || undefined,
       });
@@ -56,9 +58,9 @@ export default function VehicleForm({ onSubmit, onCancel, initialData }: Vehicle
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       {/* メーカーと車種 */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
         <div>
-          <label htmlFor="maker" className="block text-sm font-medium text-gray-700 mb-2">
+          <label htmlFor="maker" className="block text-xs font-semibold text-gray-600 mb-2 tracking-wide uppercase">
             メーカー <span className="text-red-500">*</span>
           </label>
           <input
@@ -68,13 +70,13 @@ export default function VehicleForm({ onSubmit, onCancel, initialData }: Vehicle
             value={formData.maker}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-200 hover:border-gray-300 text-sm sm:text-base"
             placeholder="例：トヨタ"
           />
         </div>
 
         <div>
-          <label htmlFor="model" className="block text-sm font-medium text-gray-700 mb-2">
+          <label htmlFor="model" className="block text-xs font-semibold text-gray-600 mb-2 tracking-wide uppercase">
             車種 <span className="text-red-500">*</span>
           </label>
           <input
@@ -84,16 +86,16 @@ export default function VehicleForm({ onSubmit, onCancel, initialData }: Vehicle
             value={formData.model}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-200 hover:border-gray-300 text-sm sm:text-base"
             placeholder="例：プリウス"
           />
         </div>
       </div>
 
       {/* 年式と価格 */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
         <div>
-          <label htmlFor="year" className="block text-sm font-medium text-gray-700 mb-2">
+          <label htmlFor="year" className="block text-xs font-semibold text-gray-600 mb-2 tracking-wide uppercase">
             年式
           </label>
           <input
@@ -104,13 +106,13 @@ export default function VehicleForm({ onSubmit, onCancel, initialData }: Vehicle
             onChange={handleChange}
             min="1900"
             max="2100"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-200 hover:border-gray-300 text-sm sm:text-base"
             placeholder="例：2023"
           />
         </div>
 
         <div>
-          <label htmlFor="price" className="block text-sm font-medium text-gray-700 mb-2">
+          <label htmlFor="price" className="block text-xs font-semibold text-gray-600 mb-2 tracking-wide uppercase">
             価格（円）
           </label>
           <input
@@ -120,16 +122,16 @@ export default function VehicleForm({ onSubmit, onCancel, initialData }: Vehicle
             value={formData.price}
             onChange={handleChange}
             min="0"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-200 hover:border-gray-300 text-sm sm:text-base"
             placeholder="例：2800000"
           />
         </div>
       </div>
 
       {/* 購入日と納車予定日 */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
         <div>
-          <label htmlFor="purchaseDate" className="block text-sm font-medium text-gray-700 mb-2">
+          <label htmlFor="purchaseDate" className="block text-xs font-semibold text-gray-600 mb-2 tracking-wide uppercase">
             購入日 <span className="text-red-500">*</span>
           </label>
           <input
@@ -139,12 +141,12 @@ export default function VehicleForm({ onSubmit, onCancel, initialData }: Vehicle
             value={formData.purchaseDate}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-200 hover:border-gray-300 text-sm sm:text-base"
           />
         </div>
 
         <div>
-          <label htmlFor="deliveryDate" className="block text-sm font-medium text-gray-700 mb-2">
+          <label htmlFor="deliveryDate" className="block text-xs font-semibold text-gray-600 mb-2 tracking-wide uppercase">
             納車予定日 <span className="text-red-500">*</span>
           </label>
           <input
@@ -154,15 +156,31 @@ export default function VehicleForm({ onSubmit, onCancel, initialData }: Vehicle
             value={formData.deliveryDate}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-200 hover:border-gray-300 text-sm sm:text-base"
           />
         </div>
       </div>
 
+      {/* 顧客名 */}
+      <div>
+        <label htmlFor="customerName" className="block text-xs font-semibold text-gray-600 mb-2 tracking-wide uppercase">
+          顧客名
+        </label>
+        <input
+          type="text"
+          id="customerName"
+          name="customerName"
+          value={formData.customerName}
+          onChange={handleChange}
+          className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-200 hover:border-gray-300 text-sm sm:text-base"
+          placeholder="例：田中一郎"
+        />
+      </div>
+
       {/* 担当者とステータス */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
         <div>
-          <label htmlFor="assignee" className="block text-sm font-medium text-gray-700 mb-2">
+          <label htmlFor="assignee" className="block text-xs font-semibold text-gray-600 mb-2 tracking-wide uppercase">
             担当者 <span className="text-red-500">*</span>
           </label>
           <input
@@ -172,13 +190,13 @@ export default function VehicleForm({ onSubmit, onCancel, initialData }: Vehicle
             value={formData.assignee}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-200 hover:border-gray-300 text-sm sm:text-base"
             placeholder="例：山田太郎"
           />
         </div>
 
         <div>
-          <label htmlFor="status" className="block text-sm font-medium text-gray-700 mb-2">
+          <label htmlFor="status" className="block text-xs font-semibold text-gray-600 mb-2 tracking-wide uppercase">
             ステータス <span className="text-red-500">*</span>
           </label>
           <select
@@ -187,7 +205,7 @@ export default function VehicleForm({ onSubmit, onCancel, initialData }: Vehicle
             value={formData.status}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-200 hover:border-gray-300 text-sm sm:text-base cursor-pointer"
           >
             <option value="契約済み">契約済み</option>
             <option value="書類手続き中">書類手続き中</option>
@@ -200,7 +218,7 @@ export default function VehicleForm({ onSubmit, onCancel, initialData }: Vehicle
 
       {/* メモ */}
       <div>
-        <label htmlFor="memo" className="block text-sm font-medium text-gray-700 mb-2">
+        <label htmlFor="memo" className="block text-xs font-semibold text-gray-600 mb-2 tracking-wide uppercase">
           メモ
         </label>
         <textarea
@@ -209,25 +227,25 @@ export default function VehicleForm({ onSubmit, onCancel, initialData }: Vehicle
           value={formData.memo}
           onChange={handleChange}
           rows={3}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-200 hover:border-gray-300 text-sm sm:text-base resize-none"
           placeholder="例：ナビとドラレコを後付け予定"
         />
       </div>
 
       {/* ボタン */}
-      <div className="flex justify-end space-x-3 pt-4">
+      <div className="flex justify-end space-x-3 pt-6">
         <button
           type="button"
           onClick={onCancel}
           disabled={isSubmitting}
-          className="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50"
+          className="px-6 py-3 border border-gray-200 text-gray-700 rounded-xl hover:bg-gray-50 transition-all duration-200 disabled:opacity-50 font-semibold"
         >
           キャンセル
         </button>
         <button
           type="submit"
           disabled={isSubmitting}
-          className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 flex items-center space-x-2"
+          className="px-6 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-all duration-200 disabled:opacity-50 flex items-center space-x-2 shadow-sm hover:shadow-md font-semibold"
         >
           {isSubmitting ? (
             <>

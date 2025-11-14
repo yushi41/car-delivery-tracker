@@ -25,6 +25,7 @@ export async function getAllVehicles(): Promise<Vehicle[]> {
     purchaseDate: vehicle.purchase_date,
     deliveryDate: vehicle.delivery_date,
     assignee: vehicle.assignee,
+    customerName: vehicle.customer_name || undefined,
     status: vehicle.status as any,
     memo: vehicle.memo || undefined,
   }));
@@ -54,6 +55,7 @@ export async function getVehicleById(id: string): Promise<Vehicle | null> {
     purchaseDate: data.purchase_date,
     deliveryDate: data.delivery_date,
     assignee: data.assignee,
+    customerName: data.customer_name || undefined,
     status: data.status as any,
     memo: data.memo || undefined,
   };
@@ -74,6 +76,7 @@ export async function createVehicle(vehicle: Omit<Vehicle, 'id'>): Promise<Vehic
         purchase_date: vehicle.purchaseDate,
         delivery_date: vehicle.deliveryDate,
         assignee: vehicle.assignee,
+        customer_name: vehicle.customerName || null,
         status: vehicle.status,
         memo: vehicle.memo || null,
       },
@@ -95,6 +98,7 @@ export async function createVehicle(vehicle: Omit<Vehicle, 'id'>): Promise<Vehic
     purchaseDate: data.purchase_date,
     deliveryDate: data.delivery_date,
     assignee: data.assignee,
+    customerName: data.customer_name || undefined,
     status: data.status as any,
     memo: data.memo || undefined,
   };
@@ -113,6 +117,7 @@ export async function updateVehicle(id: string, vehicle: Partial<Vehicle>): Prom
   if (vehicle.purchaseDate !== undefined) updateData.purchase_date = vehicle.purchaseDate;
   if (vehicle.deliveryDate !== undefined) updateData.delivery_date = vehicle.deliveryDate;
   if (vehicle.assignee !== undefined) updateData.assignee = vehicle.assignee;
+  if (vehicle.customerName !== undefined) updateData.customer_name = vehicle.customerName || null;
   if (vehicle.status !== undefined) updateData.status = vehicle.status;
   if (vehicle.memo !== undefined) updateData.memo = vehicle.memo;
 
@@ -137,6 +142,7 @@ export async function updateVehicle(id: string, vehicle: Partial<Vehicle>): Prom
     purchaseDate: data.purchase_date,
     deliveryDate: data.delivery_date,
     assignee: data.assignee,
+    customerName: data.customer_name || undefined,
     status: data.status as any,
     memo: data.memo || undefined,
   };

@@ -8,6 +8,7 @@ export interface Vehicle {
   purchaseDate: string;    // 購入日
   deliveryDate: string;    // 納車予定日
   assignee: string;        // 担当者
+  customerName?: string;   // 顧客名
   status: VehicleStatus;   // ステータス
   memo?: string;           // メモ
 }
