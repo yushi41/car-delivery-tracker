@@ -178,7 +178,7 @@ export default function HomeClient({ initialVehicles }: HomeClientProps) {
           )}
 
           {/* サマリー（納車待ちタブのみ表示） */}
-          {activeTab === 'waiting' && activeTab !== 'calendar' && (
+          {activeTab === 'waiting' && (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-8">
               <div className="bg-white rounded-2xl shadow-sm p-6 border border-gray-200/60 hover:shadow-md transition-all duration-200">
                 <div className="text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wide">納車待ち車両</div>

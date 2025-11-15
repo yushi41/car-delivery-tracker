@@ -17,7 +17,7 @@ interface TabsProps {
 }
 
 export default function Tabs({ tabs, activeTab, onChange }: TabsProps) {
-  const getIcon = (iconType?: string, isActive: boolean) => {
+  const getIcon = (isActive: boolean, iconType?: string) => {
     const iconClass = `w-4 h-4 ${isActive ? 'text-blue-600' : 'text-gray-400'}`;
     
     switch (iconType) {
@@ -51,7 +51,7 @@ export default function Tabs({ tabs, activeTab, onChange }: TabsProps) {
                 }
               `}
             >
-              {tab.icon && getIcon(tab.icon, isActive)}
+              {tab.icon && getIcon(isActive, tab.icon)}
               <span className="font-semibold">{tab.label}</span>
               {tab.count !== undefined && (
                 <span className={`
